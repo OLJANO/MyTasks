@@ -1,8 +1,15 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+$id = $_GET['id'];
 
+$pdo = new PDO("mysql:host=localhost; dbname=test", "root", "");
+
+$sql = 'DELETE FROM tasks WHERE id=:id';
+
+$statement = $pdo->prepare($sql);
+
+$statement->bindParam(":id", $id);
+
+$statement->execute();
+
+header('Location: /');
